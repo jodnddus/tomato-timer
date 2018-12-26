@@ -51,9 +51,27 @@ function applyRestartTimer(state) {
         ...state,
         isPlaying: false,
         elapsedTime: 0
-    }
+    };
 }
 
 function applyAddSecond(state) {
-
+    if (state.elapsedTime < TIMER_DURATION) {
+        return {
+            ...state,
+            elapsedTime: state.elapsedTime + 1
+        };
+    } else {
+        return {
+            ...state,
+            isPlaying: false
+        };
+    }
 }
+
+const actionCreators = {
+    startTimer,
+    restartTimer,
+    addSecond
+}
+
+export default reducer;
